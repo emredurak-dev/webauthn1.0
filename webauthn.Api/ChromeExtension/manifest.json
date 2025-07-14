@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "WebAuthn Helper",
+  "version": "1.0",
+  "description": "WebAuthn demo extension for webauthn.io",
+  
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  
+  "host_permissions": [
+    "https://webauthn.io/*",
+    "https://webauthn.me/*",
+    "https://localhost:7072/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": [
+        "https://webauthn.io/*",
+        "https://webauthn.me/*"
+      ],
+      "exclude_matches": [
+        "https://webauthn.io/img/*",
+        "https://webauthn.me/img/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "WebAuthn Helper"
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": ["*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+} 
